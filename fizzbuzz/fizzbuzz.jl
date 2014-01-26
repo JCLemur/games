@@ -32,14 +32,11 @@ function replace(x)
             return replacement
         end
     end
-    return string(x)
+    string(x)
 end
 
-# Generate the Fizz Buzz sequence from 1 until the given limit
-# (inclusive).
-function fizzbuzz(limit)
-    return map(replace, 1:limit)
-end
+# Generate the Fizz Buzz sequence from 1 the given limit (inclusive).
+fizzbuzz(limit) = map(replace, 1:limit)
 
 function test_fizzbuzz()
     expected = [
