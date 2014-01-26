@@ -14,14 +14,13 @@ using Base.Test
 
 
 divisible_by(dividend, divisor) = dividend % divisor == 0
-divisible_by_3(x) = divisible_by(x, 3)
-divisible_by_5(x) = divisible_by(x, 5)
-divisible_by_3_and_5(x) = divisible_by_3(x) && divisible_by_5(x)
+divisible_by_all(divisors...) = dividend ->
+    all(map(divisor -> divisible_by(dividend, divisor), divisors))
 
 REPLACEMENTS = [
-    (divisible_by_3_and_5, "Fizz Buzz"),
-    (divisible_by_3, "Fizz"),
-    (divisible_by_5, "Buzz"),
+    (divisible_by_all(3, 5), "Fizz Buzz"),
+    (divisible_by_all(3),    "Fizz"),
+    (divisible_by_all(5),    "Buzz"),
 ]
 
 # Return the replacement defined for the given number, or the number
