@@ -11,11 +11,10 @@ game.
 .. _Fizz Buzz: http://en.wikipedia.org/wiki/Fizzbuzz
 
 :Copyright: 2014 `Jochen Kupperschmidt <http://homework.nwsnet.de/>`_
-:Date: 26-Jan-2014
+:Date: 25-Feb-2014
 :License: MIT
 """
 
-from functools import partial
 try:
     from future_builtins import map
 except ImportError:
@@ -25,14 +24,15 @@ import unittest
 
 
 divisible_by = lambda dividend, divisor: dividend % divisor == 0
-divisible_by_3 = partial(divisible_by, divisor=3)
-divisible_by_5 = partial(divisible_by, divisor=5)
-divisible_by_3_and_5 = lambda x: divisible_by_3(x) and divisible_by_5(x)
+
+def divisible_by_all(*divisors):
+    return lambda dividend: \
+        all(divisible_by(dividend, divisor) for divisor in divisors)
 
 REPLACEMENTS = [
-    (divisible_by_3_and_5, 'Fizz Buzz'),
-    (divisible_by_3, 'Fizz'),
-    (divisible_by_5, 'Buzz'),
+    (divisible_by_all(3, 5), 'Fizz Buzz'),
+    (divisible_by_all(3),    'Fizz'),
+    (divisible_by_all(5),    'Buzz'),
 ]
 
 def replace(x):
@@ -56,14 +56,14 @@ class FizzBuzzTestCase(unittest.TestCase):
 
     def test(self):
         expected = [
-            '1', '2', 'Fizz', '4', 'Buzz',
-            'Fizz', '7', '8', 'Fizz', 'Buzz',
-            '11', 'Fizz', '13', '14', 'Fizz Buzz',
-            '16', '17', 'Fizz', '19', 'Buzz',
-            'Fizz', '22', '23', 'Fizz', 'Buzz',
-            '26', 'Fizz', '28', '29', 'Fizz Buzz',
-            '31', '32', 'Fizz', '34', 'Buzz',
-            'Fizz', '37', '38', 'Fizz', 'Buzz',
+            '1',    '2',    'Fizz', '4',    'Buzz',
+            'Fizz', '7',    '8',    'Fizz', 'Buzz',
+            '11',   'Fizz', '13',   '14',   'Fizz Buzz',
+            '16',   '17',   'Fizz', '19',   'Buzz',
+            'Fizz', '22',   '23',   'Fizz', 'Buzz',
+            '26',   'Fizz', '28',   '29',   'Fizz Buzz',
+            '31',   '32',   'Fizz', '34',   'Buzz',
+            'Fizz', '37',   '38',   'Fizz', 'Buzz',
         ]
         actual = list(fizzbuzz(40))
         self.assertEqual(actual, expected)
