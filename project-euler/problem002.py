@@ -16,14 +16,19 @@ do not exceed four million, find the sum of the even-valued
 terms.
 """
 
+try:
+    from future_builtins import filter
+except ImportError:
+    pass  # Python 3
 from itertools import islice, takewhile
 import unittest
 
 
 def solve(exclusive_limit):
     predicate = lambda x: x < exclusive_limit
-    xs = takewhile(predicate, generate_fibonacci())
-    return sum(xs)
+    fibonacci_numbers = takewhile(predicate, generate_fibonacci())
+    even_numbers = filter(even, fibonacci_numbers)
+    return sum(even_numbers)
 
 def generate_fibonacci():
     """Generate the Fibonacci sequence."""
@@ -32,6 +37,9 @@ def generate_fibonacci():
     while True:
         a, b = b, a + b
         yield b
+
+def even(x):
+    return x % 2 == 0
 
 
 class Problem002TestCase(unittest.TestCase):
@@ -42,7 +50,7 @@ class Problem002TestCase(unittest.TestCase):
         self.assertEqual(actual, expected)
 
     def test_solution(self):
-        self.assertEqual(solve(4000000), 9227463)
+        self.assertEqual(solve(4000000), 4613732)
 
 
 if __name__ == '__main__':

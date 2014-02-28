@@ -18,8 +18,12 @@ using Base.Test
 
 function solve(exclusive_limit)
     predicate = x -> x < exclusive_limit
-    xs = @task takewhile(predicate, @task fibonacci())
-    sum(xs) + 1
+    fibonacci_task = @task fibonacci()
+    fibonaccis = collect(@task takewhile(predicate, fibonacci_task))
+
+    evens = filter(even, fibonaccis)
+
+    sum(evens)
 end
 
 function fibonacci()
@@ -40,6 +44,8 @@ function takewhile(predicate, iterable)
     end
 end
 
+even(x) = x % 2 == 0
+
 
 # --- tests ---
 
@@ -50,7 +56,7 @@ function test_fibonacci()
     @test actual == expected
 end
 
-test_solution() = @test solve(4000000) == 9227464
+test_solution() = @test solve(4000000) == 4613732
 
 function run_tests()
     test_fibonacci()
