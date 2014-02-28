@@ -28,6 +28,8 @@ multiple_of_any(x, ys) = any(y -> multiple_of(x, y), ys)
 multiple_of(x, y) = x % y == 0
 
 
+# --- tests ---
+
 test_example() = @test solve(10) == 23
 test_solution() = @test solve(1000) == 233168
 

@@ -25,6 +25,8 @@ end
 multiple_of(x, y) = x % y == 0
 
 
+# --- tests ---
+
 test_example() = @test solve(13195) == 29
 test_solution() = @test solve(600851475143) == 6857
 
