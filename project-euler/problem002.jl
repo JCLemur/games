@@ -21,7 +21,7 @@ function solve(exclusive_limit)
     fibonacci_task = @task fibonacci()
     fibonaccis = collect(@task takewhile(predicate, fibonacci_task))
 
-    evens = filter(even, fibonaccis)
+    evens = filter(iseven, fibonaccis)
 
     sum(evens)
 end
@@ -43,8 +43,6 @@ function takewhile(predicate, iterable)
         produce(x)
     end
 end
-
-even(x) = x % 2 == 0
 
 
 # --- tests ---
