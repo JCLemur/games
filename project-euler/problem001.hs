@@ -20,10 +20,10 @@ solve exlusiveLimit = sum $ filter multipleOf3or5 xs
         inclusiveLimit = exlusiveLimit - 1
 
 multipleOf3or5 :: Int -> Bool
-multipleOf3or5 x = (multipleOfAny x) [3, 5]
+multipleOf3or5 x = multipleOfAny x [3, 5]
 
-multipleOfAny :: Int -> [Int] -> Bool
-multipleOfAny x ys = any (multipleOf x) ys
+multipleOfAny :: Int -> ([Int] -> Bool)
+multipleOfAny x = any (multipleOf x)
 
 multipleOf :: Int -> Int -> Bool
 multipleOf x y = x `mod` y == 0
