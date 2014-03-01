@@ -4,7 +4,7 @@ Project Euler
 Solutions to the problems presented by `Project Euler`_
 implemented in different programming languages.
 
-.. Project Euler: https://projecteuler.net/
+.. _Project Euler: https://projecteuler.net/
 
 
 Spoiler Alert
@@ -40,4 +40,4 @@ Implementations may require additional software to be installed:
 
     julia> Pkg.add("Interators")
 
-.. HUnit: http://hunit.sourceforge.net/
+.. _HUnit: http://hunit.sourceforge.net/
