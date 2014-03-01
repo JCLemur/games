@@ -14,19 +14,16 @@ import Test.HUnit
 
 
 solve :: Int -> Int
-solve exlusiveLimit = sum $ filter multipleOf3or5 xs
-    where
-        xs = [1..inclusiveLimit]
-        inclusiveLimit = exlusiveLimit - 1
+solve limit = sum $ filter (multipleOfAnyOf [3, 5]) $ numbersUntil limit
 
-multipleOf3or5 :: Int -> Bool
-multipleOf3or5 x = multipleOfAny x [3, 5]
-
-multipleOfAny :: Int -> ([Int] -> Bool)
-multipleOfAny x = any (multipleOf x)
+multipleOfAnyOf :: [Int] -> Int -> Bool
+multipleOfAnyOf divisors dividend = any (multipleOf dividend) divisors
 
 multipleOf :: Int -> Int -> Bool
-multipleOf x y = x `mod` y == 0
+multipleOf dividend divisor = dividend `mod` divisor == 0
+
+numbersUntil :: Int -> [Int]
+numbersUntil limit = takeWhile (< limit) [1..]
 
 
 -- tests
