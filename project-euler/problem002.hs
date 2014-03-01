@@ -18,9 +18,9 @@ import Test.HUnit
 
 
 solve :: Int -> Int
-solve exlusiveLimit = sum $ filter even fibonaccis
+solve exclusiveLimit = sum $ filter even fibonaccis
     where
-        fibonaccis = takeWhile (< exlusiveLimit) fibonacci
+        fibonaccis = takeWhile (< exclusiveLimit) fibonacci
 
 fibonacci :: [Int]
 fibonacci = map fst $ iterate (\(a, b) -> (b, a + b)) (0, 1)
