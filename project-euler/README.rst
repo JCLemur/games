@@ -24,9 +24,9 @@ Languages
 Currently problems have been implemented using these
 programming languages:
 
-- `Haskell <http://www.haskell.org/>`_
-- `Julia <http://julialang.org/>`_
-- `Python <http://www.python.org/>`_
+- `Haskell <http://www.haskell.org/>`_ (``*.hs``)
+- `Julia <http://julialang.org/>`_ (``*.jl``)
+- `Python <http://www.python.org/>`_ (``*.py``)
 
 
 Dependencies
