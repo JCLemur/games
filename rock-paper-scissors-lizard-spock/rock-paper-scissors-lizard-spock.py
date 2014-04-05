@@ -19,6 +19,21 @@ The rule extensions for the two new gestures, Lizard and Spock, are:
 - Spock bends scissors.
 
 
+Requirements
+------------
+
+At least version 2.7 of Python is required. The code should work with
+Python 3.1 and later as well, but only has been tested on versions 3.3
+and 3.4.
+
+On Python before version 3.4, the 'enum34' package must be installed
+separately:
+
+.. code:: sh
+
+    $ pip install enum34
+
+
 Tests
 -----
 
@@ -34,14 +49,19 @@ Then run them (specifying the module name, not the file name):
 
     $ nose2 rock-paper-scissors-lizard-spock
 
+Note: Because the pseudo-random numbers of the built-in 'random'
+module are not reproducible across Python versions, the report tests
+are currently only working on Python 2.7
 
-:Copyright: 2013 `Jochen Kupperschmidt <http://homework.nwsnet.de/>`_
-:Date: 02-Jul-2013
+
+:Copyright: 2013-2014 `Jochen Kupperschmidt <http://homework.nwsnet.de/>`_
+:Date: 05-Apr-2014
 :License: MIT
 """
 
 from __future__ import print_function
 from collections import Counter, defaultdict, namedtuple
+from enum import Enum
 from itertools import combinations, islice
 import random
 import unittest
@@ -49,23 +69,11 @@ import unittest
 from nose2.tools import params
 
 
-def create_enum(enum_name, value_names):
-    """Create an enum-like structure, similar to what Java offers.
-
-    Enums will be available in Python as of version 3.4.
-    """
-    Enum = namedtuple(enum_name, ['name'])
-    Enum.__repr__ = lambda self: self.name
-    values = map(Enum, value_names)
-    return namedtuple(enum_name, value_names)._make(values)
-
 Player = namedtuple('Player', ['name', 'throw_gesture'])
 
-Gesture = create_enum('Gesture',
-    ['Rock', 'Paper', 'Scissors', 'Lizard', 'Spock'])
+Gesture = Enum('Gesture', 'Rock Paper Scissors Lizard Spock')
 
-VersusResult = create_enum('VersusResult',
-    ['Won', 'Tie', 'Lost'])
+VersusResult = Enum('VersusResult', 'Won Tie Lost')
 
 
 SUPERIOR_TO_INFERIOR_GESTURES = {
@@ -84,7 +92,7 @@ POINTS = {
 
 PLAYERS = [
     Player('A', lambda: Gesture.Paper),
-    Player('B', lambda: random.choice(Gesture)),
+    Player('B', lambda: random.choice(list(Gesture))),
 ]
 
 
