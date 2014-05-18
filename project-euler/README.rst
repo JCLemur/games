@@ -14,7 +14,7 @@ Be aware that many of the implementations are accompanied by
 unit tests which include the actual answers to the problems.
 
 Don't spoil the fun and learning experience for yourself by
-looking at those answers unless you managed to solved the
+looking at those answers unless you have solved the respective
 problem yourself.
 
 
