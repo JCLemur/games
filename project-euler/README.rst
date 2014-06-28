@@ -27,6 +27,7 @@ programming languages:
 - `Haskell <http://www.haskell.org/>`_ (``*.hs``)
 - `Julia <http://julialang.org/>`_ (``*.jl``)
 - `Python <http://www.python.org/>`_ (``*.py``)
+- `Rust <http://www.rust-lang.org/>`_ (``*.rs``)
 
 
 Dependencies
@@ -41,3 +42,24 @@ Implementations may require additional software to be installed:
     julia> Pkg.add("Interators")
 
 .. _HUnit: http://hunit.sourceforge.net/
+
+
+Execution
+---------
+
+Rust code must be compiled before being executed.
+
+To compile and run (i.e. execute the `main` function of)
+`example.rs`:
+
+.. code:: sh
+
+  $ rustc example.rs && ./example
+
+To compile `example.rs` and run its test functions
+(insignificant warnings about the `main` function being unused
+may appear):
+
+.. code:: sh
+
+  $ rustc --test example.rs && ./example
