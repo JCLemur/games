@@ -49,16 +49,16 @@ Execution
 
 Rust code must be compiled before being executed.
 
-To compile and run (i.e. execute the `main` function of)
-`example.rs`:
+To compile and run (i.e. execute the ``main`` function of)
+``example.rs``:
 
 .. code:: sh
 
   $ rustc example.rs && ./example
 
-To compile `example.rs` and run its test functions
-(insignificant warnings about the `main` function being unused
-may appear):
+To compile ``example.rs`` and run its test functions
+(insignificant warnings about the ``main`` function being
+unused may appear):
 
 .. code:: sh
 
