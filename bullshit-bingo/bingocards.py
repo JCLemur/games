@@ -136,22 +136,26 @@ def parse_args():
     """Parse command line arguments."""
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('words_file',
+    parser.add_argument(
+        'words_file',
         metavar='<words file>')
 
-    parser.add_argument('-b', '--bonus-field',
+    parser.add_argument(
+        '-b', '--bonus-field',
         dest='include_bonus_field',
         action='store_true',
         default=False,
         help='add one bonus field per card')
 
-    parser.add_argument('-c', '--num-cards',
+    parser.add_argument(
+        '-c', '--num-cards',
         dest='num_cards',
         type=int,
         default=1,
         help='number of cards to create (default: 1)')
 
-    parser.add_argument('-s', '--card-size',
+    parser.add_argument(
+        '-s', '--card-size',
         dest='card_size',
         type=int,
         default=5,
@@ -224,7 +228,8 @@ if __name__ == '__main__':
     words = frozenset(load_words(args.words_file))
 
     # Create tables of words.
-    tables = [list(build_table(words, args.card_size, args.include_bonus_field))
+    tables = [
+        list(build_table(words, args.card_size, args.include_bonus_field))
         for _ in xrange(args.num_cards)]
 
     # Write HTML output to stdout.  To create a file, redirect the data by
