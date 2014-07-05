@@ -101,7 +101,8 @@ def generate_rounds(players):
     gestures and returns their respective points.
     """
     while True:
-        names_and_points = [(name, POINTS[versus_result])
+        names_and_points = [
+            (name, POINTS[versus_result])
             for name, versus_result in generate_versus_results(players)]
         yield defaultdict(float, names_and_points)
 
