@@ -26,6 +26,7 @@ programming languages:
 
 - `Haskell <http://www.haskell.org/>`_ (``*.hs``)
 - `Julia <http://julialang.org/>`_ (``*.jl``)
+- `Nim <http://nim-lang.org/>`_ (``*.nim``)
 - `Python <http://www.python.org/>`_ (``*.py``)
 - `Rust <http://www.rust-lang.org/>`_ (``*.rs``)
 
@@ -46,6 +47,20 @@ Implementations may require additional software to be installed:
 
 Execution
 ---------
+
+
+Nim
+~~~
+
+Nim code can be compiled and run in one go:
+
+.. code:: sh
+
+  $ nim c -r example.nim
+
+
+Rust
+~~~~
 
 Rust code must be compiled before being executed.
 
